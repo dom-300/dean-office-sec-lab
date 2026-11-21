@@ -1,0 +1,25 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+
+# Secrets & Environment
+.env
+.env.*
+!.env.example
+
+# Database & Backups
+data/
+*.db
+*.sqlite3
+*.enc
+
+# Certificates & Reports
+nginx/certs/
+reports/
+
+# IDE
+.vscode/
+.idea/

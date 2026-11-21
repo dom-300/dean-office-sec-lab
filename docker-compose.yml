@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    container_name: dean_office_modern
+    ports:
+      - "127.0.0.1:8000:8000"  # Доступ виключно з локальної машини (WSL2/Windows host)
+    volumes:
+      - ./app:/app_code/app    # Монтуємо лише директорію коду, а не весь корінь проєкту
+      - db_data:/app_code/data
+    env_file:
+      - .env                   # Docker Compose автоматично підтягне змінні і впаде, якщо файлу немає
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:?JWT_SECRET_KEY не задано у .env}
+    restart: unless-stopped
+
+volumes:
+  db_data:
