@@ -58,3 +58,30 @@ class LoginResponse(BaseModel):
     user_id: int
     username: str
     roles: list[str] = []
+
+
+# ── JWT та предметні схеми (Етап 4) ──
+class TokenResponse(BaseModel):
+    access_token: str
+    refresh_token: str
+    token_type: str = "bearer"
+
+
+class TokenRefreshRequest(BaseModel):
+    refresh_token: str
+
+
+class UserInfo(BaseModel):
+    id: int
+    username: str
+    email: str
+    full_name: str
+    roles: list[str]
+    permissions: list[str]
+
+
+class GradeCreate(BaseModel):
+    student_id: int = Field(..., gt=0)
+    subject_id: int = Field(..., gt=0)
+    grade: int = Field(..., ge=0, le=100)
+    comment: str | None = Field(None, max_length=500)
